@@ -11,12 +11,15 @@ const HomePage = () => {
     const fetchPosts = async () => {
       setLoader(true);
       try {
-        const response = await fetch('http://localhost:5000/api/v1/posts', {
-          method: 'GET',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-        });
+        const response = await fetch(
+          'https://imaginai-hqw9.onrender.com/api/v1/posts',
+          {
+            method: 'GET',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+          }
+        );
         if (response.ok) {
           const result = await response.json();
           setAllPosts(result.data.reverse());
@@ -29,8 +32,6 @@ const HomePage = () => {
     };
     fetchPosts();
   }, []);
-
-  
 
   const RenderCards = ({ data, title }) => {
     if (data?.length > 0) {
@@ -79,7 +80,6 @@ const HomePage = () => {
           name='text'
           placeholder='search posts'
           value={searchText}
-         
           handleChange={handleSearchChange}
         />
       </div>
