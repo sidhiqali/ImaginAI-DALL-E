@@ -1,11 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import { Card, FormField, Loader } from '../components/index';
+import RenderCards from '../components/RenderCards';
 const HomePage = () => {
   const [loader, setLoader] = useState(false);
   const [allPosts, setAllPosts] = useState('');
   const [searchText, setSearchText] = useState('');
   const [searchedResults, setSearchedResults] = useState(null);
   const [searchTimeout, setSearchTimeout] = useState(null);
+
+  
+  //Fetch posts from the server
 
   useEffect(() => {
     const fetchPosts = async () => {
@@ -33,18 +37,7 @@ const HomePage = () => {
     fetchPosts();
   }, []);
 
-  const RenderCards = ({ data, title }) => {
-    if (data?.length > 0) {
-      return data.map((post) => {
-        return <Card key={post?._id} {...post} />;
-      });
-    }
-    return (
-      <h2 className='mt-5 font-bold text-[#6449ff] text-xl uppercase'>
-        {title}
-      </h2>
-    );
-  };
+  // search for posts
 
   const handleSearchChange = (e) => {
     clearTimeout(searchTimeout);

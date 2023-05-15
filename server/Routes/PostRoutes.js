@@ -11,6 +11,8 @@ cloudinary.config({
   api_secret: process.env.CLOUDINARY_API_SECRET,
 });
 
+//get posts from database and show in post section
+
 router.route('/').get(async (req, res) => {
   try {
     const posts = await Post.find({});
@@ -20,11 +22,12 @@ router.route('/').get(async (req, res) => {
   }
 });
 
+//upload image to cloudinary and upload post to the database when get api call from front-end
+
 router.route('/').post(async (req, res) => {
   try {
     const { name, prompt, image } = req.body;
     const imageUrl = await cloudinary.uploader.upload(image);
-    console.log(`imageurl: ${imageUrl}`);
     const newPost = await Post.create({
       name,
       prompt,

@@ -12,6 +12,8 @@ const configuration = new Configuration({
 
 const openai = new OpenAIApi(configuration);
 
+//route for Creating image according to prompt given from client side
+
 router.route('/').post(async (req, res) => {
   try {
     const { prompt } = req.body;

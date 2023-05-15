@@ -14,9 +14,12 @@ const PostPage = () => {
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
+  // handle input field data
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
+
+  // handle submit created image  and share to community
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -45,10 +48,14 @@ const PostPage = () => {
     }
   };
 
+  // to pick random prompts from an array of prompts
+
   const handleSurpriseMe = () => {
     const randomPrompt = getRandomPrompt(form.prompt);
     setForm({ ...form, prompt: randomPrompt });
   };
+
+  //Generate image based on given prompts
 
   const generateImg = async () => {
     if (form.prompt && form.name) {
@@ -75,6 +82,8 @@ const PostPage = () => {
       alert('Please enter a prompt and name to generate a new image');
     }
   };
+
+  // implement of Enter button for generating a new image
 
   const generateImage = (e) => {
     if (
